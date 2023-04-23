@@ -1,0 +1,117 @@
+
+points:
+  key:
+    padding: U
+  zones:
+    matrix:
+      rows:
+        bottom:
+          bind: [2,1,2,3]
+        middle:
+          bind: [0,1,0,3]
+        top:
+          bind: [0,1,2,3]
+      columns:
+        outer:
+          row_overrides:
+            top:
+        pinkie:
+          rotate: -5
+          stagger: -0.9U
+          row_overrides:
+              middle:
+              bottom:
+        ring:
+          stagger: 0.35U
+        middle:
+          stagger: 0.25U
+        index:
+          stagger: -0.15U
+        inner:
+          stagger: -0.15U
+    thumb:
+      anchor:
+        ref: matrix_inner_bottom
+        shift: [-2, -1.25U]
+        rotate: -10
+      rows:
+        trow:
+          bind: [5,4,2,5]
+      columns:
+        touter:
+        tmiddle:
+          rotate: -15
+          spread: 22.25
+          stagger: -3
+        tinner:
+          rotate: -12
+          spread: 22.25
+          stagger: -3
+          rows:
+            trow:
+              bind: [5.7,0,2,3]
+outlines:
+  exports:
+    raw: 
+      - type: keys
+        side: left
+        size: [U,U]
+      - type: rectangle
+        size: [107, 25]
+        anchor: 
+          ref: matrix_pinkie_bottom
+          shift: [-13, -29]
+          rotate: -14
+      - type: rectangle
+        size: [23, 15]
+        anchor: 
+          ref: matrix_outer_top
+          shift: [-12,-11.8]
+          rotate: -38.5
+      - type: rectangle
+        size: [24, 50]
+        anchor: 
+          ref: matrix_outer_top
+          shift: [-12.5,10]
+          rotate: -58
+    cutout:
+      - type: outline
+        name: raw
+        fillet: 3
+pcbs:
+  the_board:
+    outlines:
+      main:
+        outline: raw
+  footprints:
+    promicro:
+      type: promicro_pretty
+      anchor:
+        ref: matrix_inner_top
+        shift: [21, -7]
+        rotate: -90
+      params:
+        orientation: down
+    trrs:
+      type: trrs
+      nets:
+        A: GND
+        B: GND
+        C: P2
+        D: VCC
+      anchor:
+        ref: matrix_inner_top
+        shift: [38, 10]
+        rotate: 0
+      params:
+        reverse: true
+        symmetric: true
+    reset:
+      type: jumper
+      anchor:
+        ref: matrix_index_top
+        shift: [0, .52U]
+      nets:
+        from: GND
+        to: RST
+    
